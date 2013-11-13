@@ -19,14 +19,6 @@ void B(double a, double b, int &k)
 	return;
 }
 
-// функция обработки 3 области графика
-void C(double a, double b, int &k)
-{
-	if ((b>=-0.5*a+1)&&(b<=-2*a-2)&&(a<=-3)&&(b>=3))
-		k=1;
-	return;
-}
-
 
 
 int main()
