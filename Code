@@ -3,14 +3,6 @@
 #include <Windows.h>
 using namespace std;
 
-// функция обработки 1 области графика
-void A(double a, double b, int &k)
-{
-	if ((b>=a-2)&&(a>=0)&&(b<=0))
-		k=1;
-	return;
-}
-
 // функция обработки 2 области графика
 void B(double a, double b, int &k)
 {
