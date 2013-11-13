@@ -1,0 +1,85 @@
+#define _LAB1_2_H
+
+#define Error_sqrt "Под корнем отрицательное выражение\n\n"
+#define Error_zero "Деление на ноль\n\n"
+#define Error_max "Превышение диапазона\n"
+
+#include <iostream>
+#include <math.h>
+#include <Windows.h>
+;
+using namespace std;
+
+class TCalc_dynamic
+{
+private:
+	float *A, *B;
+	double *C, *D ;
+
+
+public:
+	TCalc_dynamic(float av = 0,float bv = 0, double cv = 0, double dv = 0);
+	~TCalc_dynamic();
+	void Calc();
+};
+
+TCalc_dynamic::TCalc_dynamic(float a,float b, double c, double d)
+{
+	A = new float;
+	*A = a;
+	B = new float;
+	*B = b;
+	C = new double;
+	*C = c;
+	D = new double;
+	*D = d;
+}
+
+TCalc_dynamic::~TCalc_dynamic()
+{
+	delete A;
+	delete C;
+	delete B;
+	delete D;
+}
+
+void TCalc_dynamic::Calc()
+{
+	float a, b;
+	double c ,d;
+
+	a = *A;
+	c = *C;
+	b = *B;
+	d = *D;
+
+	try
+		{
+			double res = 0;
+			long double x = c*d-1;
+			if (x>DBL_MAX) throw Error_max;
+			long double y = sqrt(15*a)+b-a/4;
+			if (y>DBL_MAX) throw Error_max;
+			cout<<"Числитель = "<<y<<endl;
+			cout<<"Знаменатель = "<<x<<endl;
+			if (x == 0) throw Error_zero;
+			if (15*a < 0) throw Error_sqrt;
+			if (b == 0) throw Error_zero;
+			res = y/x;
+			if (res>DBL_MAX) throw Error_max;
+			cout<<"Результат = "<<res<<endl;
+
+		}
+
+		catch (char *v)
+		{
+			cout<<"\nОбработка исключительной ситуации...";
+			cout<<"\nError: ";
+			cout<<v;
+		}
+		catch (...)
+		{
+			cout<<"\nОбработка неизвестной исключительной ситуации";
+			throw;
+		}
+}
